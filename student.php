@@ -98,7 +98,7 @@ $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
       </select>
       
 
-      <button type=submit id=button>Rate My Lab</button>
+      <button type=submit class="button">Rate My Lab</button>
     </div>
   </form>
   </body>
