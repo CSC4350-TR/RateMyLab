@@ -22,16 +22,14 @@ $name = $_SESSION['name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="professor_dash.css" />
+    <link rel="stylesheet" href="professor_dash.css" type ="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 
     <script type="text/javascript"> 
     document.addEventListener('DOMContentLoaded', function() {
 
         var labDisplayContainer = document.getElementsByClassName("lab-display-container")[0];
-
         <?php 
         $sql="SELECT * FROM labs WHERE instructor_name='$name'";
         $all_labs = mysqli_query($con, $sql);
@@ -39,30 +37,37 @@ $name = $_SESSION['name'];
         ?>
             var i = 0;
 
-            labDisplayContainer[i] = document.createElement('div');
-            labDisplayContainer[i].className = 'lab-display';
+            labDisplay = document.createElement('div');
+            labDisplay.className = 'lab-display';
 
             //Contains info for and displays name of the lab
             var labName = document.createElement('div');
             labName.className = 'lab-name';
-            labName.innerHTML = "<?php> echo $lab['course_name'] ?> SECTION <?php> echo $lab['section_num'] ?>";
-            labDisplayContainer[i].appendChild(labName);
+            labName.innerHTML = "<?php echo $lab['course_name'] ?> SECTION <?php echo $lab['section_num'] ?>";
+            labDisplay.appendChild(labName);
         
             //Contains info for and displays the rating of the lab
             var labRating = document.createElement('div');
             labRating.className = 'lab-rating';
-            labRating.innerHTML = "<?php> echo $lab['avg_rate'] ?>" 
-            labDisplayContainer[i].appendChild(labRating);
+            labRating.innerHTML = "<?php echo $lab['avg_rate'] ?>";
+            labDisplay.appendChild(labRating);
 
             var labDifficulty = document.createElement('div');
             labDifficulty.className = 'lab-difficulty';
-            labDifficulty.innerHTML = "<?php> echo $lab['avg_dif'] ?>";
-            labDisplayContainer[i].appendChild(labDifficulty);
+            labDifficulty.innerHTML = "<?php echo $lab['avg_dif'] ?>";
+            labDisplay.appendChild(labDifficulty);
+
+            labDisplayContainer.appendChild(labDisplay);
 
         <?php endwhile; ?>
     }, false);
 
     </script>
+    
+    <script
+      src="https://kit.fontawesome.com/6df089f401.js"
+      crossorigin="anonymous"
+    ></script>
 
   </head>
   <body>
